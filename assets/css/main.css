@@ -1,0 +1,7 @@
+body {
+  height: fit-content;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom right, rgb(247, 255, 178), rgb(164, 248, 244));
+}
