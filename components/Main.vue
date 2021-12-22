@@ -40,6 +40,8 @@
 import { currency } from "../middleware/currency";
 
 export default {
+  // props: ['requests'], // - 2-й вариант получ-я данных (в index.vue ч/з asyncData при переходе на Main)
+
   data() {
     return {
       currency,
@@ -54,9 +56,7 @@ export default {
     };
   },
 
-  // props: ["requests"], // - чтобы работать с массивом - получаю из стора, а не пропсом из pages/index.vue
   computed: {
-    // - др. вариант получить requests (доступ на сервере - сюда отрисованная старница)
     requests() {
       return this.$store.getters.requests;
     },

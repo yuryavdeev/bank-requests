@@ -3,16 +3,11 @@
 </template>
 
 <script>
-export default {
-  async asyncData({ store }) {
-    // - доступен только на комп-х уровня страницы <- доступ на сервере -> как пропс вниз => доч. компонет отрисуется с данными полученными на сервере
-    if (Object.keys(store.getters.requests).length) {
-      // const data = store.getters.requests; // - чтобы работать с массивом в Main - получаю из стора, а не пропсом
-      return;
-    } else {
-      const data = await store.dispatch("load");
-      // return { data };
-    }
-  },
-};
+// - этот вариант исключил из-за траффика (отправка отрисов-й страницы при каждом переходе на роут /)
+// export default {
+//   // - доступен только на комп-х уровня страницы <- доступ на сервере -> можно данные передать как пропс вниз (тут - return {data}) => доч. компонет отрисуется с данными на сервере
+//   async asyncData({ store }) {
+//     await store.dispatch("load");
+//   },
+// };
 </script>

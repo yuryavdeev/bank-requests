@@ -3,7 +3,7 @@
     class="py-0"
     small
     :variant="classesMap[$props.type]"
-    :disabled="$route.params.userId"
+    :disabled="!!$route.params.userId"
   >
     {{ textMap[$props.type] }}
   </b-button>
@@ -39,7 +39,7 @@ export default {
     };
   },
 
-  // для динамики отрисовки возврата сервера  - при обновлении записи (в Request.vue)
+  // для динамики отрисовки возврата сервера  - при обновлении записи (в АррRequestItem.vue)
   // watch(props, (val) => {
   //   className.value = classesMap[val.type]
   //   text.value = textMap[val.type]

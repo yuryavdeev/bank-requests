@@ -1,14 +1,6 @@
 import axios from 'axios'
 // // import { error } from '../../utils/error'
 
-// {
-//   amount: 65500,
-//   fio: 'А. Денисов',
-//   phone: '+7-855-698-25-14',
-//   status: 'done',
-//   id: '-MqdqZXrMspMxvHS8kMe'
-// }
-
 
 export const state = () => ({
   form: {
@@ -16,26 +8,25 @@ export const state = () => ({
     password: "123456"
   },
   token: '',
-  requests: {},
+  requests: [],
 })
 
 export const mutations = {
   setToken(state, token) {
     state.token = token
-    console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<
   },
   setRequests(state, requests) {
-    // развернул влож. объект и добавил id (он же key)
-    state.requests = Object.keys(requests).map(id => ({ ...requests[id], id }))
-    console.log('requests', state.requests) // <<<<<<<<<<<<<<<<
+    state.requests = requests
+    console.log('requests', requests) // <<<<<<<<<<<<<<<<
   }
 }
 
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
-  async nuxtServerInit({ commit, state }, { store }) {
-    const form = {...state.form}
-    console.log(form)
+  async nuxtServerInit({ commit, dispatch, state }, { store }) {
+    const form = { ...state.form }
+    // console.log(form)
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.apiKey}`
     const { data } = await axios.post(url, {
       ...form,
@@ -43,6 +34,7 @@ export const actions = {
     })
     if (data) {
       commit('setToken', data.idToken)
+      await dispatch('load')
     }
   },
 
@@ -51,8 +43,9 @@ export const actions = {
       const token = state.token
       const { data } = await axios.get(`${process.env.baseUrl}/request.json?auth=${token}`)
       // в data - объекты, где ключ - сгенерир. базой id и значением - объектом данных из формы
-      commit('setRequests', data)
-      return data
+      // развернул влож. объект и добавил id (он же key)
+      const requests = Object.keys(data).map(id => ({ ...data[id], id }))
+      commit('setRequests', requests)
     } catch (err) {
       console.log(err)
       // dispatch('showMessage', {
@@ -62,7 +55,7 @@ export const actions = {
     }
   },
 
-  async remove({ dispatch, state }, id) { // удаление записи
+  async remove({ dispatch, state }, id) { // обновить стор после успешного удаления
     try {
       const token = state.token
       await axios.delete(`${process.env.baseUrl}/request/${id}.json?auth=${token}`)
@@ -70,6 +63,25 @@ export const actions = {
       //   value: 'Запись удалена',
       //   type: 'primary'
       // }, { root: true })
+    } catch (err) {
+      console.log(err)
+      // dispatch('showMessage', {
+      //   value: err.message,
+      //   type: 'danger'
+      // }, { root: true })
+    }
+  },
+
+  async update({ dispatch, state }, request) { // обновить стор после успешного обновления
+    console.log('inUpdate')
+    try {
+      const token = state.token
+      await axios.put(`${process.env.baseUrl}/request/${request.id}.json?auth=${token}`, request)
+      // dispatch('showMessage', {
+      //   value: 'Запись обновлена',
+      //   type: 'primary'
+      // }, { root: true })
+      console.log('updated')
     } catch (err) {
       console.log(err)
       // dispatch('showMessage', {
