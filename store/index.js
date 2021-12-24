@@ -19,7 +19,11 @@ export const mutations = {
   setRequests(state, requests) {
     state.requests = requests
     console.log('requests', requests) // <<<<<<<<<<<<<<<<
-  }
+  },
+  addRequest(state, newRequest) {
+    state.requests.push(newRequest)
+    console.log(newRequest)
+  },
 }
 
 export const actions = {
@@ -34,7 +38,7 @@ export const actions = {
     })
     if (data) {
       commit('setToken', data.idToken)
-      await dispatch('load')
+      await dispatch('load') // - загрузить список заявок -> отрисовать на сервере
     }
   },
 
@@ -45,7 +49,26 @@ export const actions = {
       // в data - объекты, где ключ - сгенерир. базой id и значением - объектом данных из формы
       // развернул влож. объект и добавил id (он же key)
       const requests = Object.keys(data).map(id => ({ ...data[id], id }))
-      commit('setRequests', requests)
+      commit('setRequests', requests) // - меняю список заявок локально - не подгружаю с сревера в компоненте
+    } catch (err) {
+      console.log(err)
+      // dispatch('showMessage', {
+      //   value: err.message,
+      //   type: 'danger'
+      // }, { root: true })
+    }
+  },
+
+  async create({ commit, dispatch }, payload) {
+    try {
+      const token = state.token
+      const { data } = await axios.post(`${process.env.baseUrl}/request.json?auth=${token}`, payload)
+      // в список - данные от формы - payload и добавл. к нему данные сервера - id: data.name
+      commit('addRequest', { ...payload, id: data.name })
+      // dispatch('showMessage', {
+      //   value: 'Заявка успешно создана',
+      //   type: 'primary'
+      // }, { root: true })
     } catch (err) {
       console.log(err)
       // dispatch('showMessage', {

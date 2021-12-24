@@ -31,7 +31,7 @@
         Помощь
       </b-nav-item>
       <b-nav-item href="#" v-b-toggle.sidebar-variant> Информация </b-nav-item>
-      <b-button @click="logout" class="ml-3" pill variant="outline-secondary">
+      <b-button size="sm" @click="logout" class="ml-3 my-auto py-0" variant="primary">
         Выход
       </b-button>
     </b-nav>
@@ -46,7 +46,6 @@ export default {
   data() {
     return {
       isHoveredSpin: false,
-      // colors: [success, warning, danger],
     };
   },
 

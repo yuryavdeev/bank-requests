@@ -1,5 +1,18 @@
 <template>
   <UiAppPage title="Список заявок">
+    <template #header>
+      <b-button
+        v-b-modal.modal-1
+        :ok-disabled="false"
+        class="ml-auto h-75 my-auto"
+        variant="success"
+      >
+        Создать
+      </b-button>
+    </template>
+
+    <UiAppModal title="Создать заявку" />
+
     <div>
       <b-table
         bordered
@@ -45,7 +58,6 @@ export default {
   data() {
     return {
       currency,
-
       fields: [
         "№",
         { sortable: true, key: "fio", label: "ФИО" },

@@ -1,11 +1,13 @@
 <template>
   <div class="container col-8 my-5 p-4">
-    <h1>
-      {{ title }}
-      <hr />
+    <b-row class="px-3">
+      <h1 class="m-0 p-0">
+        {{ title }}
+      </h1>
       <!-- <slot name="header" /> - для доп. контента в тайтле - напр. кнопка -->
       <slot name="header" />
-    </h1>
+    </b-row>
+    <hr />
     <!-- <slot/> - указал куда складывать осн. контент -->
     <slot />
   </div>

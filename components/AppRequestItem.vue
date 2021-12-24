@@ -3,7 +3,7 @@
     <p><strong>Имя</strong>: {{ user.fio }}</p>
     <p><strong>Телефон</strong>: {{ user.phone }}</p>
     <p><strong>Сумма</strong>: {{ currency(user.amount) }}</p>
-    <p><strong>Статус</strong>: <UiAppStatus :type="status" /></p>
+    <p><strong>Статус</strong>: <UiAppStatus :type="user.status ? user.status : status" /></p>
 
     <div class="col-5 mb-4 p-0">
       <label for="status"><strong>Новый статус: </strong></label>
@@ -64,7 +64,7 @@ export default {
       const data = { ...userData, status: this.status, id: id };
       await this.$store.dispatch("update", data);
       await this.$store.dispatch("load");
-      // this.user.status = this.status // если ответ - ок - локально обновил тут
+      this.user.status = this.status // если ответ - ок - локально обновил тут
     },
   },
 };
