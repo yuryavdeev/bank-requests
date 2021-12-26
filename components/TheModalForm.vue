@@ -146,7 +146,7 @@ export default {
 .warning {
   display: block;
   color: red;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1;
 }
 

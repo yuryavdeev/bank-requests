@@ -24,7 +24,7 @@ extend('min', min)
 
 extend('numeric', {
   ...numeric,
-  message: 'Поле может содержать только целые цифры'
+  message: 'Поле может содержать только целые числа'
 })
 
 extend('alpha_spaces', {
