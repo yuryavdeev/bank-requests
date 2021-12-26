@@ -30,7 +30,11 @@ export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
   async nuxtServerInit({ commit, dispatch, state }, { store }) {
     const form = { ...state.form }
-    // console.log(form)
+    await dispatch('login', form)
+  },
+
+
+  async login({ commit, dispatch }, form) {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.apiKey}`
     const { data } = await axios.post(url, {
       ...form,
@@ -38,9 +42,11 @@ export const actions = {
     })
     if (data) {
       commit('setToken', data.idToken)
-      await dispatch('load') // - загрузить список заявок -> отрисовать на сервере
+      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
+      await dispatch('load')
     }
   },
+
 
   async load({ commit, state }) {
     try {
@@ -59,7 +65,7 @@ export const actions = {
     }
   },
 
-  async create({ commit, dispatch }, payload) {
+  async create({ commit, state }, payload) {
     try {
       const token = state.token
       const { data } = await axios.post(`${process.env.baseUrl}/request.json?auth=${token}`, payload)
