@@ -12,39 +12,37 @@
 
     <TheModalForm title="Создать заявку" />
 
-    <div>
-      <b-table
-        bordered
-        head-variant="light"
-        hover
-        :items="requests"
-        :fields="fields"
-        sort-icon-left
-        responsive="sm"
-      >
-        <template #cell(№)="data">
-          {{ data.index + 1 }}
-        </template>
+    <b-table
+      bordered
+      head-variant="light"
+      hover
+      :items="requests"
+      :fields="fields"
+      sort-icon-left
+      responsive="sm"
+    >
+      <template #cell(№)="data">
+        {{ data.index + 1 }}
+      </template>
 
-        <template #cell(amount)="data">
-          {{ currency(data.item.amount) }}
-        </template>
+      <template #cell(amount)="data">
+        {{ currency(data.item.amount) }}
+      </template>
 
-        <template #cell(status)="data">
-          <!-- cм. -> https://router.vuejs.org/ru/api/#router-link -->
-          <!-- name: 'request-userId' - автоматич. Nuxt сгенерир. имя роута -->
-          <router-link
-            v-slot="{ navigate }"
-            custom
-            :to="{ name: 'request-userId', params: { userId: data.item.id } }"
-          >
-            <span @click="navigate">
-              <UiAppStatus :type="data.item.status" />
-            </span>
-          </router-link>
-        </template>
-      </b-table>
-    </div>
+      <template #cell(status)="data">
+        <!-- cм. -> https://router.vuejs.org/ru/api/#router-link -->
+        <!-- name: 'request-userId' - автоматич. Nuxt сгенерир. имя роута -->
+        <router-link
+          v-slot="{ navigate }"
+          custom
+          :to="{ name: 'request-userId', params: { userId: data.item.id } }"
+        >
+          <span @click="navigate">
+            <UiAppStatus :type="data.item.status" />
+          </span>
+        </router-link>
+      </template>
+    </b-table>
   </ui-app-page>
 </template>
 

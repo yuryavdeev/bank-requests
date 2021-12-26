@@ -54,7 +54,8 @@ export default {
       this.isHoveredSpin = hovered;
     },
 
-    logout() {
+    async logout() {
+      await this.$store.commit('logout')
       this.$router.push("/auth");
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <UiAppPage title="Войти в систему">
     <ValidationObserver v-slot="{ invalid }">
-      <b-form @submit.prevent="onSubmit">
+      <b-form class="col-10 m-auto" @submit.prevent="onSubmit">
         <ValidationProvider
           mode="eager"
           rules="required|email"
@@ -13,7 +13,8 @@
               id="email"
               v-model="form.email"
               placeholder="test@mail.ru"
-            ></b-form-input>
+            >
+            </b-form-input>
             <span class="warning mt-2">{{ errors[0] }}</span>
           </b-form-group>
         </ValidationProvider>
@@ -66,10 +67,12 @@ export default {
 
   methods: {
     async onSubmit() {
-      await this.$store.dispatch("login", this.form);
-      this.$router.push("/");
-      this.form.email = "";
-      this.form.password = "";
+      const ok = await this.$store.dispatch("login", this.form);
+      if (ok) {
+        this.$router.push("/");
+        this.form.email = "";
+        this.form.password = "";
+      }
     },
   },
 };

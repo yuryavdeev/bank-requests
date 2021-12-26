@@ -3,11 +3,11 @@ import axios from 'axios'
 
 
 export const state = () => ({
-  form: {
-    email: "test@mail.ru",
-    password: "123456"
-  },
-  token: '',
+  // form: { // - для автоматического вода + раскомментировать в nuxtServerInit
+  //   email: "test@mail.ru",
+  //   password: "123456"
+  // },
+  token: null,
   requests: [],
 })
 
@@ -16,21 +16,29 @@ export const mutations = {
     state.token = token
     console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<
   },
+
   setRequests(state, requests) {
     state.requests = requests
     console.log('requests', requests) // <<<<<<<<<<<<<<<<
   },
+
   addRequest(state, newRequest) {
     state.requests.push(newRequest)
     console.log(newRequest)
   },
+
+  logout(state) { // удалил токен только на своей стороне
+    state.token = null
+  }
 }
 
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
-  async nuxtServerInit({ commit, dispatch, state }, { store }) {
-    const form = { ...state.form }
-    await dispatch('login', form)
+  async nuxtServerInit({ commit, dispatch, state }, { req, redirect }) {
+    // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
+    console.log('nuxtServerInit -> state.token -> ', state.token)
+    // redirect('/auth')  // <- сделал ч/з мидлвару checkAuth для дефолтного лэйаута
+    // const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
   },
 
 
@@ -44,6 +52,7 @@ export const actions = {
       commit('setToken', data.idToken)
       // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
       await dispatch('load')
+      return true
     }
   },
 
@@ -122,9 +131,12 @@ export const actions = {
 }
 
 export const getters = {
-  token(state) {
-    return state.token
+  token: state => state.token,
+
+  isAuth(_, getters) { // _, - пропуск 1-го параметра
+    return !!getters.token // -> вернет булевое значение
   },
+
   requests(state) {
     return state.requests
   }

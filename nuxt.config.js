@@ -70,5 +70,10 @@ export default {
   env: {
     apiKey: process.env.VUE_APP_FB_KEY,
     baseUrl: process.env.VUE_APP_FB_URL_BASE
+  },
+
+  target: 'static',
+  router: {
+    base: '/bank-requests/'
   }
 }
