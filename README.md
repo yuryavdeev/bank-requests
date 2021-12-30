@@ -2,7 +2,7 @@
 
 Хостинг на GitHub -> https://yuryavdeev.github.io/bank-requests
 
-Хостинг на Firebase -> https://banks-requests.web.app/
+Хостинг на Firebase -> https://banks-requests.web.app
 
 ### development
 npm install -> npm run dev
