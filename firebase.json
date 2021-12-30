@@ -1,0 +1,11 @@
+{
+  "functions": { "source": "dist" },
+  "hosting": [
+    {
+      "site": "banks-requests",
+      "public": "dist",
+      "cleanUrls": true,
+      "rewrites": [{ "source": "**", "function": "server" }]
+    }
+  ]
+}

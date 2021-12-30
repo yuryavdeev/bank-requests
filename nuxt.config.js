@@ -1,14 +1,14 @@
-export default {
+module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'NuxtApp test',
+    title: 'Bank | Requests',
     htmlAttrs: {
       lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Bank | Requests' },
+      { hid: 'description', name: 'description', content: 'Bank requests' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -73,7 +73,8 @@ export default {
   },
 
   target: 'static',
-  router: {
-    base: '/bank-requests/'
-  }
+  // - ниже для Гитхаба
+  // router: {
+  //   base: '/bank-requests/'
+  // }
 }
