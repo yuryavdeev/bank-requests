@@ -74,7 +74,7 @@ module.exports = {
 
   target: 'static',
   // - ниже для Гитхаба
-  // router: {
-  //   base: '/bank-requests/'
-  // }
+  router: {
+    base: '/bank-requests/'
+  }
 }
