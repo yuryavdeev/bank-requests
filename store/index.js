@@ -3,19 +3,19 @@ import axios from 'axios'
 
 
 export const state = () => ({
-  // form: { // - для автоматического вода + раскомментировать в nuxtServerInit
-  //   email: "test@mail.ru",
-  //   password: "123456"
-  // },
-  token: null,
+  form: { // - для автоматического вxода + в nuxtServerInit
+    email: "test@mail.ru",
+    password: "123456"
+  },
+  // token: null,
   requests: [],
 })
 
 export const mutations = {
-  setToken(state, token) {
-    state.token = token
-    console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<
-  },
+  // setToken(state, token) {
+  //   state.token = token
+  //   console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<
+  // },
 
   setRequests(state, requests) {
     state.requests = requests
@@ -27,39 +27,45 @@ export const mutations = {
     console.log(newRequest)
   },
 
-  logout(state) { // удалил токен только на своей стороне
-    state.token = null
-  }
+  // logout(state) { // удалил токен только на своей стороне
+  //   state.token = null
+  // }
 }
 
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
-  async nuxtServerInit({ commit, dispatch, state }, { req, redirect }) {
-    // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
-    console.log('nuxtServerInit -> state.token -> ', state.token)
-    // redirect('/auth')  // <- сделал ч/з мидлвару checkAuth для дефолтного лэйаута
-    // const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
-  },
-
-
-  async login({ commit, dispatch }, form) {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.apiKey}`
-    const { data } = await axios.post(url, {
-      ...form,
-      returnSecureToken: true,
-    })
-    if (data) {
-      commit('setToken', data.idToken)
-      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
-      await dispatch('load')
-      return true
+  async nuxtServerInit({ commit, dispatch, state, getters }, { req, redirect }) {
+    if (!getters['login/isAuth']) {
+      const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
+      const ok = await dispatch('login/login', form)
+      if (ok) {
+        redirect('/')
+      }
     }
+    // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
+    // console.log('nuxtServerInit -> state.token -> ', state.login.token)
+    // redirect('/auth')  // <- сделал ч/з мидлвару checkAuth для дефолтного лэйаута
   },
+
+
+  // async login({ commit, dispatch }, form) {
+  //   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.apiKey}`
+  //   const { data } = await axios.post(url, {
+  //     ...form,
+  //     returnSecureToken: true,
+  //   })
+  //   if (data) {
+  //     commit('setToken', data.idToken)
+  //     // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
+  //     await dispatch('load')
+  //     return true
+  //   }
+  // },
 
 
   async load({ commit, state }) {
     try {
-      const token = state.token
+      const token = state.login.token
       const { data } = await axios.get(`${process.env.baseUrl}/request.json?auth=${token}`)
       // в data - объекты, где ключ - сгенерир. базой id и значением - объектом данных из формы
       // развернул влож. объект и добавил id (он же key)
@@ -76,7 +82,7 @@ export const actions = {
 
   async create({ commit, state }, payload) {
     try {
-      const token = state.token
+      const token = state.login.token
       const { data } = await axios.post(`${process.env.baseUrl}/request.json?auth=${token}`, payload)
       // в список - данные от формы - payload и добавл. к нему данные сервера - id: data.name
       commit('addRequest', { ...payload, id: data.name })
@@ -95,7 +101,7 @@ export const actions = {
 
   async remove({ dispatch, state }, id) { // обновить стор после успешного удаления
     try {
-      const token = state.token
+      const token = state.login.token
       await axios.delete(`${process.env.baseUrl}/request/${id}.json?auth=${token}`)
       // dispatch('showMessage', {
       //   value: 'Запись удалена',
@@ -113,7 +119,7 @@ export const actions = {
   async update({ dispatch, state }, request) { // обновить стор после успешного обновления
     console.log('inUpdate')
     try {
-      const token = state.token
+      const token = state.login.token
       await axios.put(`${process.env.baseUrl}/request/${request.id}.json?auth=${token}`, request)
       // dispatch('showMessage', {
       //   value: 'Запись обновлена',
@@ -131,11 +137,11 @@ export const actions = {
 }
 
 export const getters = {
-  token: state => state.token,
+  // token: state => state.token,
 
-  isAuth(_, getters) { // _, - пропуск 1-го параметра
-    return !!getters.token // -> вернет булевое значение
-  },
+  // isAuth(_, getters) { // _, - пропуск 1-го параметра
+  //   return !!getters.token // -> вернет булевое значение
+  // },
 
   requests(state) {
     return state.requests

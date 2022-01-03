@@ -55,7 +55,7 @@ export default {
     },
 
     async logout() {
-      await this.$store.commit('logout')
+      await this.$store.commit('login/logout')
       this.$router.push("/auth");
     },
   },

@@ -67,7 +67,7 @@ export default {
 
   methods: {
     async onSubmit() {
-      const ok = await this.$store.dispatch("login", this.form);
+      const ok = await this.$store.dispatch("login/login", this.form);
       if (ok) {
         this.$router.push("/");
         this.form.email = "";

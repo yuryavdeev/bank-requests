@@ -1,7 +1,7 @@
 export default function ({ store, redirect }) {
-  console.log('checkAuth')
-  if (!store.getters.isAuth) {
-    // console.log('isAuth', store.getters.isAuth)
+  // store.getters['login/isAuth'] - синтаксис для геттеров из модулей
+  console.log('checkAuth', store.getters['login/isAuth'])
+  if (!store.getters['login/isAuth']) {
     redirect('/auth')
   }
 }
