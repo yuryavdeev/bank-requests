@@ -13,6 +13,7 @@
     <TheModalForm title="Создать заявку" />
 
     <b-table
+      class="m-0"
       bordered
       head-variant="light"
       hover

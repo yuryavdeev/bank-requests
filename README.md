@@ -12,3 +12,9 @@ npm run build -> npm run start
 
 ### generate static project
 npm run generate    
+
+
+- поработать с авторизацией на сервере (до рендера старницы) -> cookies      
+- вывести ошибки и успешную обработку запроса от API   
+- логаут на Firebase      
+- jest

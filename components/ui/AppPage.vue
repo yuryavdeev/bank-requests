@@ -1,5 +1,5 @@
 <template>
-  <div class="container col-8 my-5 p-4">
+  <div class="container col-8 my-5 p-4" v-cloak>
     <b-row class="px-3">
       <h1 class="m-0 p-0">
         {{ title }}

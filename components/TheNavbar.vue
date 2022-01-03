@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" type="secondary" variant="light">
+  <b-navbar fixed="top" toggleable="lg" type="secondary" variant="light">
     <div v-b-hover="handleHoverSpin" class="h2 mb-0">
       <!-- иконка - получение через плагин - см. в плагинах импорты -->
       <b-icon

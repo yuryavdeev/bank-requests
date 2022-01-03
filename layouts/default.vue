@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="py-5">
     <TheNavbar />
+    <Nuxt />
     <TheSidebar />
     <TheFooter />
-    <Nuxt />
   </div>
 </template>
 
