@@ -25,6 +25,7 @@ export const mutations = {
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
   async nuxtServerInit({ commit, dispatch, state, getters }, { req, redirect }) {
+    console.log('nuxtServerInit -> ', getters['login/isAuth'])
     if (!getters['login/isAuth']) {
       const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
       await dispatch('login/login', form)

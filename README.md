@@ -1,8 +1,8 @@
 ## Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate
 
-Хостинг на GitHub -> https://yuryavdeev.github.io/bank-requests
+Хостинг на GitHub (не требует авторизации) - https://yuryavdeev.github.io/bank-requests
 
-Хостинг на Firebase -> https://banks-requests.web.app
+Хостинг на Firebase (основной роут защищен -> вход через страницу автоизации) - https://banks-requests.web.app
 
 ### development
 npm install -> npm run dev
