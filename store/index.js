@@ -35,7 +35,7 @@ export const actions = {
     // redirect('/auth')  // <- сделал ч/з мидлвару checkAuth для дефолтного лэйаута
   },
 
-  async load({ commit, state }) {
+  async load({ commit, state, dispatch }) {
     try {
       const token = state.login.token
       const { data } = await axios.get(`${process.env.baseUrl}/request.json?auth=${token}`)
@@ -45,29 +45,29 @@ export const actions = {
       commit('setRequests', requests) // - меняю список заявок локально - не подгружаю с сревера в компоненте
     } catch (err) {
       console.log(err)
-      // dispatch('showMessage', {
-      //   value: err.message,
-      //   type: 'danger'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: err.message,
+        type: 'danger'
+      })
     }
   },
 
-  async create({ commit, state }, payload) {
+  async create({ commit, state, dispatch }, payload) {
     try {
       const token = state.login.token
       const { data } = await axios.post(`${process.env.baseUrl}/request.json?auth=${token}`, payload)
       // в список - данные от формы - payload и добавл. к нему данные сервера - id: data.name
       commit('addRequest', { ...payload, id: data.name })
-      // dispatch('showMessage', {
-      //   value: 'Заявка успешно создана',
-      //   type: 'primary'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: 'Заявка успешно создана',
+        type: 'primary'
+      })
     } catch (err) {
       console.log(err)
-      // dispatch('showMessage', {
-      //   value: err.message,
-      //   type: 'danger'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: err.message,
+        type: 'danger'
+      })
     }
   },
 
@@ -75,35 +75,33 @@ export const actions = {
     try {
       const token = state.login.token
       await axios.delete(`${process.env.baseUrl}/request/${id}.json?auth=${token}`)
-      // dispatch('showMessage', {
-      //   value: 'Запись удалена',
-      //   type: 'primary'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: 'Запись удалена',
+        type: 'primary'
+      })
     } catch (err) {
       console.log(err)
-      // dispatch('showMessage', {
-      //   value: err.message,
-      //   type: 'danger'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: err.message,
+        type: 'danger'
+      })
     }
   },
 
   async update({ dispatch, state }, request) { // обновить стор после успешного обновления
-    console.log('inUpdate')
     try {
       const token = state.login.token
       await axios.put(`${process.env.baseUrl}/request/${request.id}.json?auth=${token}`, request)
-      // dispatch('showMessage', {
-      //   value: 'Запись обновлена',
-      //   type: 'primary'
-      // }, { root: true })
-      console.log('updated')
+      dispatch('loadingMessage/showMessage', {
+        value: 'Запись обновлена',
+        type: 'primary'
+      })
     } catch (err) {
       console.log(err)
-      // dispatch('showMessage', {
-      //   value: err.message,
-      //   type: 'danger'
-      // }, { root: true })
+      dispatch('loadingMessage/showMessage', {
+        value: err.message,
+        type: 'danger'
+      })
     }
   },
 }

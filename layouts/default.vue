@@ -4,6 +4,7 @@
     <Nuxt />
     <TheSidebar />
     <TheFooter />
+    <UiAppPopap />
   </div>
 </template>
 

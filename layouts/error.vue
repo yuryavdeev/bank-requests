@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1 v-if="error.statusCode">Код ошибки - {{ error.statusCode }}</h1>
-    <h2 v-if="error.message">{{ error.message }}</h2>
+  <div v-if="error.statusCode === 404">
+    <h1>Код ошибки - {{ error.statusCode }}</h1>
+    <h2>{{ error.message }}</h2>
     <hr />
-    <NuxtLink v-if="$store.getters.isAuth" to="/">На главную страницу</NuxtLink>
+    <NuxtLink v-if="$store.getters['login/isAuth']" to="/">На главную страницу</NuxtLink>
     <NuxtLink v-else to="/auth">Авторизоваться</NuxtLink>
   </div>
 </template>

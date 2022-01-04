@@ -1,3 +1,6 @@
 <template>
-  <Nuxt />
+  <div>
+    <Nuxt />
+    <UiAppPopap />
+  </div>
 </template>

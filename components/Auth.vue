@@ -67,11 +67,12 @@ export default {
 
   methods: {
     async onSubmit() {
-      const ok = await this.$store.dispatch("login/login", this.form);
-      if (ok) {
+      try {
+        await this.$store.dispatch("login/login", this.form);
         this.$router.push("/");
-        this.form.email = "";
-        this.form.password = "";
+      } catch (e) {
+        // в login.js в catch выкинуть ошибку, чтобы исключить тут автоматич. router.push('/') <- тут создаем try/catch
+        console.log(e);
       }
     },
   },
