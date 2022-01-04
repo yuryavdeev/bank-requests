@@ -7,16 +7,10 @@ export const state = () => ({
     email: "test@mail.ru",
     password: "123456"
   },
-  // token: null,
   requests: [],
 })
 
 export const mutations = {
-  // setToken(state, token) {
-  //   state.token = token
-  //   console.log('token', token) // <<<<<<<<<<<<<<<<<<<<<<
-  // },
-
   setRequests(state, requests) {
     state.requests = requests
     console.log('requests', requests) // <<<<<<<<<<<<<<<<
@@ -26,10 +20,6 @@ export const mutations = {
     state.requests.push(newRequest)
     console.log(newRequest)
   },
-
-  // logout(state) { // удалил токен только на своей стороне
-  //   state.token = null
-  // }
 }
 
 export const actions = {
@@ -37,31 +27,12 @@ export const actions = {
   async nuxtServerInit({ commit, dispatch, state, getters }, { req, redirect }) {
     if (!getters['login/isAuth']) {
       const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
-      const ok = await dispatch('login/login', form)
-      if (ok) {
-        redirect('/')
-      }
+      await dispatch('login/login', form)
     }
     // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
     // console.log('nuxtServerInit -> state.token -> ', state.login.token)
     // redirect('/auth')  // <- сделал ч/з мидлвару checkAuth для дефолтного лэйаута
   },
-
-
-  // async login({ commit, dispatch }, form) {
-  //   const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.apiKey}`
-  //   const { data } = await axios.post(url, {
-  //     ...form,
-  //     returnSecureToken: true,
-  //   })
-  //   if (data) {
-  //     commit('setToken', data.idToken)
-  //     // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
-  //     await dispatch('load')
-  //     return true
-  //   }
-  // },
-
 
   async load({ commit, state }) {
     try {
@@ -137,12 +108,6 @@ export const actions = {
 }
 
 export const getters = {
-  // token: state => state.token,
-
-  // isAuth(_, getters) { // _, - пропуск 1-го параметра
-  //   return !!getters.token // -> вернет булевое значение
-  // },
-
   requests(state) {
     return state.requests
   }
