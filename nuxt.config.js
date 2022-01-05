@@ -49,7 +49,7 @@ module.exports = {
     '@nuxtjs/auth-next',
   ],
 
-  // bootstrapVue: { // - если импортировать руками
+  // bootstrapVue: { // - если импортировать вручную
   //   bootstrapCSS: false,
   //   bootstrapVueCSS: false
   // },
@@ -74,7 +74,7 @@ module.exports = {
 
   target: 'static',
   // - ниже для Гитхаба
-  // router: {
-  //   base: '/bank-requests/'
-  // }
+  router: {
+    base: '/bank-requests/'
+  }
 }

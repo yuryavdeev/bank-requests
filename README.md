@@ -14,6 +14,3 @@ npm run build -> npm run start
 npm run generate    
 
      
-- логаут на Firebase      
-- jest
-- индикатор загрузки
