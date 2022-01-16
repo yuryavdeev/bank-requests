@@ -73,7 +73,7 @@ module.exports = {
     baseUrl: process.env.VUE_APP_FB_URL_BASE
   },
 
-  // target: 'static',
+  target: 'static',
   // - ниже для Гитхаба
   router: {
     base: '/bank-requests/'
