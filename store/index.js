@@ -13,19 +13,20 @@ export const state = () => ({
 export const mutations = {
   setRequests(state, requests) {
     state.requests = requests
-    console.log('requests', requests) // <<<<<<<<<<<<<<<<
+    // console.log('requests', requests) // <<<<<<<<<<<<<<<<
   },
 
   addRequest(state, newRequest) {
     state.requests.push(newRequest)
-    console.log(newRequest)
+    // console.log(newRequest)
   },
 }
+
 
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
   async nuxtServerInit({ commit, dispatch, state, getters }, { req, redirect }) {
-    console.log('nuxtServerInit -> ', getters['login/isAuth'])
+    // console.log('nuxtServerInit -> ', getters['login/isAuth'])
     if (!getters['login/isAuth']) {
       const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
       await dispatch('login/login', form)
@@ -105,6 +106,7 @@ export const actions = {
     }
   },
 }
+
 
 export const getters = {
   requests(state) {

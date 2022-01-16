@@ -46,6 +46,7 @@ module.exports = {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // - пока не использую - т.к. это вход на "свой" сервер (глоб. доступ - $auth.loggedIn), а не на Firebase
     '@nuxtjs/auth-next',
   ],
 
@@ -72,7 +73,7 @@ module.exports = {
     baseUrl: process.env.VUE_APP_FB_URL_BASE
   },
 
-  target: 'static',
+  // target: 'static',
   // - ниже для Гитхаба
   router: {
     base: '/bank-requests/'

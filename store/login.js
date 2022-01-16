@@ -8,7 +8,7 @@ export const state = () => ({
 export const mutations = {
   setToken(state, token) {
     state.token = token
-    console.log('token', state.token) // <<<<<<<<<<<<<<<<
+    // console.log('token', state.token) // <<<<<<<<<<<<<<<<
   },
 
   logout(state) { // удалил токен только на своей стороне

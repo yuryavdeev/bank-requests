@@ -83,6 +83,7 @@ export default {
   top: 15px;
   right: 15px;
   cursor: pointer;
+  color: #000;
 }
 
 .plus:hover {

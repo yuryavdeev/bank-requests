@@ -2,7 +2,7 @@
 
 Хостинг на GitHub (не требует авторизации) - https://yuryavdeev.github.io/bank-requests
 
-Хостинг на Firebase (основной роут защищен -> вход через страницу автоизации) - https://banks-requests.web.app
+Хостинг на Firebase (основные роуты защищены -> вход через страницу автоизации) - https://banks-requests.web.app
 
 ### development
 npm install -> npm run dev
@@ -11,6 +11,4 @@ npm install -> npm run dev
 npm run build -> npm run start
 
 ### generate static project
-npm run generate    
-
-     
+npm run generate

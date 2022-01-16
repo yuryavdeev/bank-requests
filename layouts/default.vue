@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  // защита роутов (Main и Help) с этим лэйаутом
-  middleware: ["checkAuth"],
+  // защита роутов (Main и Help) с этим лэйаутом // <- перенес в файлы help и index в папке pages
+  // middleware: ["checkAuth"],
 };
 </script>
