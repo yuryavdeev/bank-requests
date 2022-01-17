@@ -3,17 +3,17 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setMessage(state, message) { // создать сообщение об ошибке (от сервера)
+  setMessage(state, message) { // создать сообщение (от сервера)
     state.message = message
   },
-  clearMessage(state) { // очистка ошибки
-    console.log('clearMessage')
+  clearMessage(state) { // очистка сообщения
+    // console.log('clearMessage')
     state.message = null
   }
 }
 
 export const actions = {
-  showMessage({ commit }, message) { // вызов в auth.js => показ ошибки и ее очистка через 4 сек. (в AppMessage.vue)
+  showMessage({ commit }, message) { // вызов в auth.js => показ ошибки и ее очистка через 4 сек. (в AppPopup.vue)
     commit('setMessage', message)
     setTimeout(() => {
       commit('clearMessage')

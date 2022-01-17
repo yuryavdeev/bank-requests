@@ -22,7 +22,6 @@ export const mutations = {
   },
 }
 
-
 export const actions = {
   // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
   async nuxtServerInit({ commit, dispatch, state, getters }, { req, redirect }) {
@@ -106,7 +105,6 @@ export const actions = {
     }
   },
 }
-
 
 export const getters = {
   requests(state) {
