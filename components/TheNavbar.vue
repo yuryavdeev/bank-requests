@@ -1,13 +1,13 @@
 <template>
   <b-navbar fixed="top" toggleable="lg" type="secondary" variant="light">
     <div v-b-hover="handleHoverSpin" class="h2 mb-0">
-      <!-- иконка - получение через плагин - см. в плагинах импорты -->
+      <!-- иконка - получение через импорты в плагинах  -->
       <b-icon
         icon="exclamation-circle"
         variant="success"
         :animation="isHoveredSpin ? 'spin' : ''"
       ></b-icon>
-      <!-- иконка - импорт в компоненте + импорт в плагине BIcon -->
+      <!-- иконка - импорт тут в компоненте + импорт в плагине BIcon -->
       <b-icon
         icon="exclamation-circle-fill"
         variant="warning"
@@ -31,7 +31,12 @@
         Помощь
       </b-nav-item>
       <b-nav-item href="#" v-b-toggle.sidebar-variant> Информация </b-nav-item>
-      <b-button size="sm" @click="logout" class="ml-3 my-auto py-0" variant="primary">
+      <b-button
+        size="sm"
+        @click="logout"
+        class="ml-3 my-auto py-0"
+        variant="primary"
+      >
         Выход
       </b-button>
     </b-nav>
@@ -39,7 +44,6 @@
 </template>
 
 <script>
-// импорт иконки сразу в компоненте
 import { BIconExclamationCircleFill } from "bootstrap-vue";
 
 export default {
@@ -55,7 +59,7 @@ export default {
     },
 
     async logout() {
-      await this.$store.commit('login/logout')
+      await this.$store.commit("login/logout");
       this.$router.push("/auth");
     },
   },

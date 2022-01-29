@@ -1,16 +1,16 @@
 <template>
-  <div class="container col-8 my-5 p-4" v-cloak>
-    <b-row class="px-3">
-      <h1 class="m-0 p-0">
-        {{ title }}
-      </h1>
-      <!-- <slot name="header" /> - для доп. контента в тайтле - напр. кнопка -->
-      <slot name="header" />
-    </b-row>
-    <hr />
-    <!-- <slot/> - указал куда складывать осн. контент -->
-    <slot />
-  </div>
+    <div class="container col-8 p-4" v-cloak>
+      <b-row class="px-3">
+        <h1 class="m-0 p-0">
+          {{ title }}
+        </h1>
+        <!-- доп. контент в тайтле -> тут кнопка -->
+        <slot name="header" />
+      </b-row>
+      <hr />
+      <!-- осн. контент -->
+      <slot />
+    </div>
 </template>
 
 <script>
@@ -20,11 +20,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-
-  setup(props) {
-    // меняем тайтл вкладки
-    document.title = `${props.title} | КлонБанк`;
   },
 };
 </script>

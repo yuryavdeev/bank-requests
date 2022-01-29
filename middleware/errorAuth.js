@@ -3,6 +3,7 @@ const ERROR_CODES = {
   INVALID_PASSWORD: 'Пароль или email введены неправильно! ',
 }
 
-export function error(code) {
+// используется в store/login.js
+export function createErrorMessage(code) {
   return ERROR_CODES[code] ? ERROR_CODES[code] : 'Неизвестная ошибка'
 }

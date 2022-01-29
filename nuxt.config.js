@@ -12,7 +12,7 @@ module.exports = {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/Subtract.svg' },
+      { rel: 'icon', type: 'image/x-icon', href: '/subtract.svg' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
@@ -46,18 +46,12 @@ module.exports = {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // - пока не использую - т.к. это вход на "свой" сервер (глоб. доступ - $auth.loggedIn), а не на Firebase
+    // - пока не использую (это вход на "свой" сервер (глоб. доступ - $auth.loggedIn), а не на Firebase)
     '@nuxtjs/auth-next',
   ],
 
-  // bootstrapVue: { // - если импортировать вручную
-  //   bootstrapCSS: false,
-  //   bootstrapVueCSS: false
-  // },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
   },
 
@@ -74,7 +68,7 @@ module.exports = {
   },
 
   target: 'static',
-  // - ниже для Гитхаба
+  // для Гитхаба ->
   router: {
     base: '/bank-requests/'
   }

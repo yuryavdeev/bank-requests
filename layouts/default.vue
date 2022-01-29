@@ -1,16 +1,9 @@
 <template>
-  <div class="py-5">
+  <div>
     <TheNavbar />
     <Nuxt />
     <TheSidebar />
     <TheFooter />
-    <UiAppPopap />
+    <UiAppPopup />
   </div>
 </template>
-
-<script>
-export default {
-  // защита роутов (Main и Help) с этим лэйаутом // <- перенес в файлы help и index в папке pages
-  // middleware: ["checkAuth"],
-};
-</script>

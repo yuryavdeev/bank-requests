@@ -1,6 +1,7 @@
 <template>
   <b-button
     class="py-0"
+    style="width: 115px;"
     small
     :variant="classesMap[$props.type]"
     :disabled="!!$route.params.userId"
@@ -38,11 +39,5 @@ export default {
       },
     };
   },
-
-  // для динамики отрисовки возврата сервера  - при обновлении записи (в АррRequestItem.vue)
-  // watch(props, (val) => {
-  //   className.value = classesMap[val.type]
-  //   text.value = textMap[val.type]
-  // }),
 };
 </script>

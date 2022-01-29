@@ -1,17 +1,30 @@
 <template>
-  <div v-if="error.statusCode === 404">
-    <h1>Код ошибки - {{ error.statusCode }}</h1>
-    <h2>{{ error.message }}</h2>
-    <hr />
-    <NuxtLink v-if="$store.getters['login/isAuth']" to="/">На главную страницу</NuxtLink>
-    <NuxtLink v-else to="/auth">Авторизоваться</NuxtLink>
+  <div>
+    <div v-if="error.statusCode === 404">
+      <h1>Код ошибки - {{ error.statusCode }}</h1>
+      <h2>{{ error.message }}</h2>
+      <hr />
+      <NuxtLink v-if="$store.getters['login/isAuth']" to="/">
+        На главную страницу
+      </NuxtLink>
+      <NuxtLink v-else to="/auth">Авторизоваться</NuxtLink>
+    </div>
+
+    <div v-else>
+      <h1>Что-то пошло не так...</h1>
+      <hr />
+      <NuxtLink v-if="$store.getters['login/isAuth']" to="/">
+        На главную страницу
+      </NuxtLink>
+      <NuxtLink v-else to="/auth">Авторизоваться</NuxtLink>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: ["error"],
-  layout: "start", // custom layout for the error page
+  layout: "start",
 };
 </script>
 

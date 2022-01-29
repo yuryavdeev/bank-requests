@@ -1,5 +1,5 @@
 export const state = () => ({
-  message: null, // объект из index.js и  с value (текст) и type (для стилей - danger...)
+  message: null, // диспатчится объект из index.js или login.js (где value - текст, type - для стилей - danger...)
 })
 
 export const mutations = {
@@ -7,16 +7,15 @@ export const mutations = {
     state.message = message
   },
   clearMessage(state) { // очистка сообщения
-    // console.log('clearMessage')
     state.message = null
   }
 }
 
 export const actions = {
-  showMessage({ commit }, message) { // вызов в auth.js => показ ошибки и ее очистка через 4 сек. (в AppPopup.vue)
+  showMessage({ commit }, message) { // в AppPopup.vue: div -> v-if="store.state.loadingMessage.message"
     commit('setMessage', message)
     setTimeout(() => {
       commit('clearMessage')
-    }, 4000)
+    }, 3000)
   }
 }

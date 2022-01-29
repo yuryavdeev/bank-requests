@@ -1,7 +1,18 @@
 body {
   height: fit-content;
+  width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(to bottom right, rgb(247, 255, 178), rgb(164, 248, 244));
+  padding: 90px 0;
+}
+
+
+/* переопределил bootstrap при открытии попапа на ModalForm.vue */
+.modal-open {
+  padding-right: 0 !important;
+}
+.navbar-secondary {
+  padding-right: 1rem !important;
 }

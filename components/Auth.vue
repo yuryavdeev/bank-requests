@@ -54,6 +54,7 @@
   </UiAppPage>
 </template>
 
+
 <script>
 export default {
   data() {
@@ -71,13 +72,14 @@ export default {
         await this.$store.dispatch("login/login", this.form);
         this.$router.push("/");
       } catch (e) {
-        // в login.js в catch выкинуть ошибку, чтобы исключить тут автоматич. router.push('/') <- тут создаем try/catch
+        // в login.js в catch выкинуть ошибку, чтобы исключить тут router.push('/') <- тут try/catch
         console.log(e);
       }
     },
   },
 };
 </script>
+
 
 <style>
 .warning {

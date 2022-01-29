@@ -1,12 +1,13 @@
 <template>
-  <div class="popap" v-if="message" @click.self="closePopap">
+<!-- v-if="message" -> message из store-->
+  <div class="popup" v-if="message" @click.self="closePopup">
     <div :class="['container', message.type]">
       <b-icon
         class="plus"
         icon="plus"
         scale="2"
         rotate="45"
-        @click="closePopap"
+        @click="closePopup"
       ></b-icon>
       <h1>{{ titleMap[message.type] }}</h1>
       <p>{{ message.value }}</p>
@@ -27,7 +28,7 @@ export default {
   },
 
   methods: {
-    closePopap() {
+    closePopup() {
       this.$store.commit("loadingMessage/clearMessage");
     },
   },
@@ -41,17 +42,17 @@ export default {
 </script>
 
 <style scoped>
-.popap {
+.popup {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 55555;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100000;
 }
 
 .primary {

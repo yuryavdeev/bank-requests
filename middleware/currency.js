@@ -1,4 +1,4 @@
-// локализуем вывод суммы - в рубли с пробелом
+// локализация вывода суммы -> в рубли с пробелом
 
 const formatValue = new Intl.NumberFormat('ru-Ru', { currency: 'RUB', style: 'currency' })
 

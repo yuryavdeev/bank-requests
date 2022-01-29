@@ -92,7 +92,6 @@
       </b-form>
 
       <template #modal-footer="{ ok }">
-        <span></span>
         <b-button
           :disabled="invalid"
           type="submit"
@@ -132,13 +131,6 @@ export default {
       this.form.status = "active";
     },
   },
-
-  // watch: {
-  //   inVisible(val, oldVal) {
-  //     console.log(val)
-  //     console.log(oldVal)
-  //   }
-  // }
 };
 </script>
 

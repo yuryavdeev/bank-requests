@@ -3,20 +3,23 @@
     <p><strong>Имя</strong>: {{ user.fio }}</p>
     <p><strong>Телефон</strong>: {{ user.phone }}</p>
     <p><strong>Сумма</strong>: {{ currency(user.amount) }}</p>
-    <p><strong>Статус</strong>: <UiAppStatus :type="user.status ? user.status : status" /></p>
+    <p>
+      <strong>Статус</strong>:
+      <UiAppStatus :type="user.status ? user.status : status" />
+    </p>
 
     <div class="col-5 mb-4 p-0">
-      <label for="status"><strong>Новый статус: </strong></label>
+      <label for="status"><strong>Выберите новый статус: </strong></label>
       <b-form-select size="sm" id="status" v-model="status" :options="options">
       </b-form-select>
     </div>
 
-    <b-button class="mr-3" variant="outline-danger" @click="remove"
-      >Удалить</b-button
-    >
-    <b-button variant="outline-info" v-if="isChangesStatus" @click="update"
-      >Обновить</b-button
-    >
+    <b-button class="mr-3" variant="outline-danger" @click="remove">
+      Удалить
+    </b-button>
+    <b-button variant="outline-info" v-if="isChangesStatus" @click="update">
+      Обновить
+    </b-button>
   </UiAppPage>
 </template>
 
@@ -28,7 +31,7 @@ export default {
     return {
       currency,
       user: {},
-      status: 'active',
+      status: "active",
       options: [
         { value: "active", text: "Активен" },
         { value: "cancelled", text: "Отменен" },
@@ -60,11 +63,11 @@ export default {
 
     async update() {
       // отправить на сервер новый выбранный статус (связан через v-model)
-      const { id, ...userData } = this.user; // - вернул в userData формат базы данных
+      const { id, ...userData } = this.user; // - создал userData в формате для базы данных -> без id
       const data = { ...userData, status: this.status, id: id };
       await this.$store.dispatch("update", data);
       await this.$store.dispatch("load");
-      this.user.status = this.status // если ответ - ок - локально обновил тут
+      this.user.status = this.status; // если ответ - ок -> локально обновил тут
     },
   },
 };
