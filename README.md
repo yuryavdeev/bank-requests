@@ -1,6 +1,7 @@
 ## bank-requests    
 
 Деплой на Firebase - https://banks-requests.web.app    
+Деплой на Github - https://yuryavdeev.github.io/bank-requests    
 
 Использованы технологии - Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate    
 
