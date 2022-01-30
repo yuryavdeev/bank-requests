@@ -5,7 +5,7 @@
     <p><strong>Сумма</strong>: {{ currency(user.amount) }}</p>
     <p>
       <strong>Статус</strong>:
-      <UiAppStatus :type="user.status ? user.status : status" />
+      <UiRequestStatus :type="user.status ? user.status : status" />
     </p>
 
     <div class="col-5 mb-4 p-0">
@@ -57,7 +57,6 @@ export default {
   methods: {
     async remove() {
       await this.$store.dispatch("remove", this.$route.params.userId);
-      await this.$store.dispatch("load");
       this.$router.push("/");
     },
 
@@ -66,7 +65,6 @@ export default {
       const { id, ...userData } = this.user; // - создал userData в формате для базы данных -> без id
       const data = { ...userData, status: this.status, id: id };
       await this.$store.dispatch("update", data);
-      await this.$store.dispatch("load");
       this.user.status = this.status; // если ответ - ок -> локально обновил тут
     },
   },

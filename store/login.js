@@ -28,7 +28,7 @@ export const actions = {
 
       commit('setToken', data.idToken)
 
-      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от AuthPage.vue - на клиенте)
+      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от AuthPage..vue - на клиенте)
       await dispatch('load', null, { root: true })
 
     } catch (err) {

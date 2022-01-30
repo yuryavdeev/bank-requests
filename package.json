@@ -8,7 +8,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "firebasedeploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@nuxtjs/auth-next": "^5.0.0-1642152945.3bb6b5f",

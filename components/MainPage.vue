@@ -13,9 +13,3 @@
     <MainPageTable />
   </ui-page-frame>
 </template>
-
-<script>
-
-export default {
-};
-</script>
