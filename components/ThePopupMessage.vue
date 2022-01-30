@@ -51,7 +51,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
-  align-items: center;
   z-index: 100000;
 }
 
@@ -69,6 +68,7 @@ export default {
 
 .container {
   position: relative;
+  top: 150px;
   width: 40%;
   height: 275px;
   background-color: #fff;

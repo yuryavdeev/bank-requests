@@ -4,11 +4,11 @@
 
 Использованы технологии - Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate    
 
-# development
+### development
 git clone -> npm i -> npm run dev
 
-# build for production and launch server
+### build for production and launch server
 npm run build -> npm run start
 
-# generate static project
+### generate static project
 npm run generate

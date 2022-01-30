@@ -109,7 +109,9 @@
 
 <script>
 export default {
-  props: ["title"],
+  props: {
+    title: String,
+  },
 
   data() {
     return {
@@ -140,9 +142,5 @@ export default {
   color: red;
   font-size: 14px;
   line-height: 1;
-}
-
-label {
-  margin: 0;
 }
 </style>

@@ -4,6 +4,6 @@
     <Nuxt />
     <TheSidebar />
     <TheFooter />
-    <UiAppPopup />
+    <ThePopupMessage />
   </div>
 </template>

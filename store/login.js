@@ -28,7 +28,7 @@ export const actions = {
 
       commit('setToken', data.idToken)
 
-      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от Auth.vue - на клиенте)
+      // - загруз. список заявок -> отрис-ть (от nuxtServerInit - на сервере или от AuthPage.vue - на клиенте)
       await dispatch('load', null, { root: true })
 
     } catch (err) {
@@ -36,7 +36,7 @@ export const actions = {
         value: createErrorMessage(err.response.data.error.message),
         type: 'danger'
       }, { root: true }) // доступ к loadingMessage/showMessage через { root: true }
-      throw new Error() // -> исключить router.push('/') после сабмита в Auth.vue - там соотв. try/catch
+      throw new Error() // -> исключить router.push('/') после сабмита в AuthPage.vue - там соотв. try/catch
     }
   },
 }

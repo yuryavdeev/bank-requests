@@ -1,5 +1,5 @@
 <template>
-  <UiAppPage title="Список заявок">
+  <ui-page-frame title="Список заявок">
     <template #header>
       <b-button
         v-b-modal.modal-1
@@ -9,15 +9,13 @@
         Создать
       </b-button>
     </template>
-    <TheModalForm title="Создать заявку" />
-    <TheRequestsTable />
-  </UiAppPage>
+    <MainPageFormNewRequest title="Создать заявку" />
+    <MainPageTable />
+  </ui-page-frame>
 </template>
 
 <script>
-import TheRequestsTable from "./TheRequestsTable.vue";
 
 export default {
-  components: { TheRequestsTable },
 };
 </script>

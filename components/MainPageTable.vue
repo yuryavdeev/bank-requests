@@ -26,7 +26,7 @@
         :to="{ name: 'request-userId', params: { userId: data.item.id } }"
       >
         <span @click="navigate">
-          <UiAppStatus :type="data.item.status" />
+          <UiRequestStatus :type="data.item.status" />
         </span>
       </router-link>
     </template>

@@ -8,7 +8,9 @@
 
 <script>
 export default {
-  props: ["question"],
+  props: {
+    question: Object
+  },
 
   data() {
     return {

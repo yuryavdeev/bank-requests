@@ -1,5 +1,5 @@
 <template>
-  <UiAppPage title="Войти в систему">
+  <ui-page-frame title="Войти в систему">
     <ValidationObserver v-slot="{ invalid }">
       <b-form class="col-10 m-auto" @submit.prevent="onSubmit">
         <ValidationProvider
@@ -51,7 +51,7 @@
         </b-button>
       </b-form>
     </ValidationObserver>
-  </UiAppPage>
+  </ui-page-frame>
 </template>
 
 

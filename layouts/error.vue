@@ -23,7 +23,9 @@
 
 <script>
 export default {
-  props: ["error"],
+  props: {
+    error: Object
+  },
   layout: "start",
 };
 </script>

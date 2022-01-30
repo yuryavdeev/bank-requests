@@ -1,5 +1,5 @@
 <template>
-  <UiAppPage title="Заявка">
+  <ui-page-frame title="Заявка">
     <p><strong>Имя</strong>: {{ user.fio }}</p>
     <p><strong>Телефон</strong>: {{ user.phone }}</p>
     <p><strong>Сумма</strong>: {{ currency(user.amount) }}</p>
@@ -20,7 +20,7 @@
     <b-button variant="outline-info" v-if="isChangesStatus" @click="update">
       Обновить
     </b-button>
-  </UiAppPage>
+  </ui-page-frame>
 </template>
 
 <script>

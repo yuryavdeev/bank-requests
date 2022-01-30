@@ -12,7 +12,7 @@ export const mutations = {
 }
 
 export const actions = {
-  showMessage({ commit }, message) { // в AppPopup.vue: div -> v-if="store.state.loadingMessage.message"
+  showMessage({ commit }, message) { // в ThePopup.vue: div -> v-if="store.state.loadingMessage.message"
     commit('setMessage', message)
     setTimeout(() => {
       commit('clearMessage')

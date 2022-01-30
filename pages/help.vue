@@ -1,5 +1,5 @@
 <template>
-  <Help />
+  <HelpPage />
 </template>
 
 

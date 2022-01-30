@@ -1,7 +1,7 @@
 <template>
-  <UiAppPage title="Помощь">
-    <UiAppHelpItem v-for="q in questions" :key="q.title" :question="q" />
-  </UiAppPage>
+  <ui-page-frame title="Помощь">
+    <HelpPageItem v-for="q in questions" :key="q.title" :question="q" />
+  </ui-page-frame>
 </template>
 
 <script>

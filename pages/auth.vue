@@ -1,5 +1,5 @@
 <template>
-  <Auth />
+  <AuthPage />
 </template>
 
 <script>

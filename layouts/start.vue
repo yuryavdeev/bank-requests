@@ -1,6 +1,6 @@
 <template>
   <div>
     <Nuxt />
-    <UiAppPopup />
+    <ThePopupMessage />
   </div>
 </template>
