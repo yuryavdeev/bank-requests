@@ -1,9 +1,8 @@
 ## bank-requests    
+Приложение создано с помощью Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate 
 
-Деплой на Firebase - https://banks-requests.web.app    
-Деплой на Github - https://yuryavdeev.github.io/bank-requests    
-
-Использованы технологии - Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate    
+Посмотреть на страницу можно тут - https://banks-requests.web.app    
+ 
 
 ### development
 git clone -> npm i -> npm run dev

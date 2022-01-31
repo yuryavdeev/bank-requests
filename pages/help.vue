@@ -2,7 +2,6 @@
   <HelpPage />
 </template>
 
-
 <script>
 export default {
   // защита роутa

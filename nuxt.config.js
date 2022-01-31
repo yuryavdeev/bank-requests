@@ -12,7 +12,7 @@ module.exports = {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/subtract.svg' },
+      { rel: 'icon', type: 'image/x-icon', href: '/location.ico' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
@@ -46,7 +46,7 @@ module.exports = {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // - пока не использую (это вход на "свой" сервер (глоб. доступ - $auth.loggedIn), а не на Firebase)
+    // вход на "свой" сервер (глоб. доступ - $auth.loggedIn), а не на Firebase...
     '@nuxtjs/auth-next',
   ],
 

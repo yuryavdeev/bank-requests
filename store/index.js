@@ -2,10 +2,10 @@ import axios from 'axios'
 
 
 export const state = () => ({
-  form: { // - для автоматического вxода - см. в nuxtServerInit
-    email: "test@mail.ru",
-    password: "123456"
-  },
+  // form: { // - для автоматического вxода - см. в nuxtServerInit
+  //   email: "test@mail.ru",
+  //   password: "123456"
+  // },
   requests: [],
 })
 
@@ -13,7 +13,7 @@ export const state = () => ({
 export const mutations = {
   setRequests(state, requests) {
     state.requests = requests
-    console.log('store -> load -> setRequests ->', state.requests)
+    console.log('store -> load -> setRequests ->', state.requests) // <<<<<<<<<<<<<<
   },
 
   addRequest(state, newRequest) {
@@ -24,20 +24,18 @@ export const mutations = {
 
 export const actions = {
 
-  // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
-  async nuxtServerInit({ dispatch, state, getters }, { req, redirect }) {
-    console.log('nuxtServerInit -> login/isAuth -> ', getters['login/isAuth'])
-    if (!getters['login/isAuth']) {
-      const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= смысл SSR
-      await dispatch('login/login', form)
-    }
-    // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
-  },
+  // // nuxtServerInit - срабатывает один раз на сервере, 2-й парам. - context
+  // async nuxtServerInit({ dispatch, state, getters }, { req, redirect }) {
+  //   console.log('nuxtServerInit -> login/isAuth -> ', getters['login/isAuth'])
+  //   const form = { ...state.form } // <- и отсюда - dispatch login и рендер "/" <= SSR
+  //   await dispatch('login/login', form)
+  //   // console.log(req.headers) // -> доступ к cookies -> м. сохр. в токен, если API возвр. куки
+  // },
 
   async load({ commit, state, dispatch }) {
     try {
       const token = state.login.token
-      
+
       // в data - объекты (ключ - сгенерир. базой id, значение - объект данных из формы)
       const { data } = await axios.get(`${process.env.baseUrl}/request.json?auth=${token}`)
 
