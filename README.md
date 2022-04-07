@@ -1,7 +1,7 @@
 ## bank-requests    
-Приложение создано с помощью Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate 
+This app created with Vue, Vuex, Nuxt (SSR), Bootstrap, Axios, VeeValidate 
 
-Посмотреть на страницу можно тут - https://banks-requests.web.app    
+You can see page here - https://banks-requests.web.app    
  
 
 ### development
